@@ -6,7 +6,7 @@
 /*   By: llachgar <llachgar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/31 17:26:08 by oaghzaf           #+#    #+#             */
-/*   Updated: 2020/02/16 15:14:40 by llachgar         ###   ########.fr       */
+/*   Updated: 2020/02/16 23:24:08 by llachgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,9 @@ void	get_info(void)
 	rest = ants_path(multi, &info);
 	add_rest(multi->paths, rest, &info);
 	loop_path(multi->paths, &info, &head);
+	free_paths(multi->paths);
 	free_multi(multi, &l);
+	free_room((&head)->begining);
 
 }
 

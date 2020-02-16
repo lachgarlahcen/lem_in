@@ -6,7 +6,7 @@
 /*   By: llachgar <llachgar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 20:45:43 by llachgar          #+#    #+#             */
-/*   Updated: 2020/02/16 14:51:50 by llachgar         ###   ########.fr       */
+/*   Updated: 2020/02/16 22:51:33 by llachgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,17 @@ int link_rooms(t_room *rooms, char *line)
     while (tab && tab[i])
         i++;
     if (i != 2)
+    {
+        free_2d_str(tab);
         return (0);
+    }
     holder = find_room(tab[0], rooms);
     two  = find_room(tab[1], rooms);
     if (!holder || !two)
+    {
+        free_2d_str(tab);
         return (0);
+    }
     if (!holder->link)
         holder->link = creat_link(two);
     else
@@ -74,6 +80,7 @@ int link_rooms(t_room *rooms, char *line)
         two->link = creat_link(holder);
     else
         link_add(two, holder);
+    free_2d_str(tab);
     return (1);
 }
 

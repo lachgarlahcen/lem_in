@@ -6,7 +6,7 @@
 /*   By: llachgar <llachgar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 11:21:47 by oaghzaf           #+#    #+#             */
-/*   Updated: 2020/02/15 09:32:22 by llachgar         ###   ########.fr       */
+/*   Updated: 2020/02/16 21:49:02 by llachgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,11 @@ int			bfs(t_graph *graph)
 		{
 			main_conditions(&tmp, &queue, &temp, graph);
 			if (tmp->room == graph->end)
+			{
+				free_queue(hold);
 				return (1);
+
+			}
 			tmp = tmp->next;
 		}
 		queue = queue->next;

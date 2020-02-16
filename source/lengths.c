@@ -6,7 +6,7 @@
 /*   By: llachgar <llachgar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 12:10:12 by oaghzaf           #+#    #+#             */
-/*   Updated: 2020/02/16 15:07:41 by llachgar         ###   ########.fr       */
+/*   Updated: 2020/02/16 23:16:04 by llachgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ t_multi	*optimal_path(t_multi *tmp, t_info *info)
 	t_multi		*multi;
 	t_multi		*result;
 	float		min;
+	t_multi		*stock;
 
 	multi = tmp;
 	min = ((info->ants + depth(multi)) / paths_length(multi->paths));
@@ -71,11 +72,17 @@ t_multi	*optimal_path(t_multi *tmp, t_info *info)
 		{
 			result = multi;
 			min = ((info->ants + depth(multi)) / paths_length(multi->paths));
+			multi = multi->next;
 		}
-		multi = multi->next;
+		else
+		{
+			stock = multi;
+			multi = multi->next;
+			free_paths(stock->paths);
+			free_multi(stock, NULL);
+		}
 	}
 	result = creat_multi(result->paths);
-	//free_multi(tmp);
 	info->instructions = (min > (int)min ? (int)(min + 1) : (int)min);
 	return (result);
 }

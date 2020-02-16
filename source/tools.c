@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oaghzaf <oaghzaf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: llachgar <llachgar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 10:53:45 by oaghzaf           #+#    #+#             */
-/*   Updated: 2020/02/03 11:48:56 by oaghzaf          ###   ########.fr       */
+/*   Updated: 2020/02/16 21:49:26 by llachgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,11 @@ void	free_queue(t_queue *queue)
 {
 	t_queue	*tmp;
 
-	while ((tmp = queue))
+	while (queue)
 	{
-		free(tmp);
+		tmp = queue;
 		queue = queue->next;
+		free(tmp);
 	}
 }
 

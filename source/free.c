@@ -6,15 +6,16 @@
 /*   By: llachgar <llachgar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 06:22:51 by oaghzaf           #+#    #+#             */
-/*   Updated: 2020/02/16 15:16:10 by llachgar         ###   ########.fr       */
+/*   Updated: 2020/02/16 23:23:41 by llachgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	free_rooms(t_room *room)
+void	free_room(t_room *room)
 {
 	t_room *tmp;
+	t_link *temp;
 
 	while (room)
 	{
@@ -22,11 +23,12 @@ void	free_rooms(t_room *room)
 		room = room->next;
 		free(tmp->name);
 		free(tmp);
-		/*while (room->link)
+		while (room->link)
 		{
-			free(room->link);
+			temp = room->link;
 			room->link = room->link->next;
-		}*/
+			free(temp);
+		}
 	}
 }
 
@@ -60,12 +62,13 @@ void	free_multi(t_multi *multi, t_lemin *l)
 {
 	t_multi *tmp;
 
-	free_lemin(l);
+	if (l)
+		free_lemin(l);
 	while (multi)
 	{
 		tmp = multi;
 		multi = multi->next;
-		free_paths(tmp->paths);
+		// free_paths(tmp->paths);
 		free(tmp);
 	}
 }
