@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llachgar <llachgar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaghzaf <oaghzaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/31 17:34:00 by oaghzaf           #+#    #+#             */
-/*   Updated: 2020/02/15 09:45:04 by llachgar         ###   ########.fr       */
+/*   Updated: 2020/02/16 06:33:13 by oaghzaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,11 @@ void	bubble_sort(t_paths *paths);
 t_paths	*sort_paths(t_paths *paths);
 void	add_rest(t_paths *paths, int rest, t_info *info);
 void	loop_path(t_paths *paths, t_info *info, t_graph *graph);
+void	free_room(t_room *room);
+void	free_path(t_path *path);
+void	free_paths(t_paths *paths);
+void	free_multi(t_multi *multi);
+
 
 /*
 ** CHECKING FILE VALIDATION FUNCTIONS

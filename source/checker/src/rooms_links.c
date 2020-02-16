@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rooms_links.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llachgar <llachgar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaghzaf <oaghzaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 20:45:43 by llachgar          #+#    #+#             */
-/*   Updated: 2020/02/15 09:23:33 by llachgar         ###   ########.fr       */
+/*   Updated: 2020/02/16 11:52:08 by oaghzaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void get_start_end(char *line, t_lemin *l, int *s, int e, t_graph *g)
         else if (!is_egnored(line))
             break ;
     }
-    if (e)
+    if (!e)
        g->start = add_torooms(&g->begining, line);
     else
        g->end = add_torooms(&g->begining, line);

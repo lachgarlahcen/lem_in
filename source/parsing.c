@@ -6,7 +6,7 @@
 /*   By: oaghzaf <oaghzaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/31 17:26:08 by oaghzaf           #+#    #+#             */
-/*   Updated: 2020/02/09 21:26:18 by oaghzaf          ###   ########.fr       */
+/*   Updated: 2020/02/16 06:39:49 by oaghzaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	add_end(t_paths **paths, t_room *end)
 	*paths = tmp;
 }
 
+
 void	get_info(void)
 {
 	t_info	info;
@@ -51,10 +52,10 @@ void	get_info(void)
 	t_multi	*multi;
 	int		rest;
 	t_lemin l;
-	
+
 	multi = NULL;
 	init(&info, &head, &l);
-	check_validation(&l, &head ,&info);
+	check_validation(&l, &head, &info);
 	the_core(&head, &multi);
 	multi = optimal_path(multi, &info);
 	multi->paths = sort_paths(multi->paths);
@@ -62,6 +63,8 @@ void	get_info(void)
 	rest = ants_path(multi, &info);
 	add_rest(multi->paths, rest, &info);
 	loop_path(multi->paths, &info, &head);
+	free_multi(multi);
+
 }
 
 int		main()
