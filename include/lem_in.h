@@ -6,7 +6,7 @@
 /*   By: llachgar <llachgar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/31 17:34:00 by oaghzaf           #+#    #+#             */
-/*   Updated: 2020/02/15 10:10:21 by llachgar         ###   ########.fr       */
+/*   Updated: 2020/02/16 15:14:16 by llachgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ typedef struct  s_data
 
 typedef struct  s_lemin
 {
-    long         ant_num;
-    char        *start;
-    char        *end;
     int         last_r;
+	int			e;
+	int			s;
     struct  s_data      *data;
 }               t_lemin;
 
@@ -136,6 +135,11 @@ void	bubble_sort(t_paths *paths);
 t_paths	*sort_paths(t_paths *paths);
 void	add_rest(t_paths *paths, int rest, t_info *info);
 void	loop_path(t_paths *paths, t_info *info, t_graph *graph);
+void	free_room(t_room *room);
+void	free_path(t_path *path);
+void	free_paths(t_paths *paths);
+void	free_multi(t_multi *multi, t_lemin *l);
+
 
 /*
 ** CHECKING FILE VALIDATION FUNCTIONS
@@ -154,6 +158,7 @@ int         link_rooms(t_room *rooms, char *line);
 void        get_start_end(char *line, t_lemin *l, int *s, int e, t_graph *g);
 void        exit_error(t_lemin *l, char *line);
 int         n_valid(char *str);
+void		free_2d_str(char **str);
 /*
 ** CHECKING FILE VALIDATION FUNCTIONS ENDED
 */

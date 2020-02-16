@@ -6,11 +6,24 @@
 /*   By: llachgar <llachgar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 20:30:59 by llachgar          #+#    #+#             */
-/*   Updated: 2020/02/15 10:17:52 by llachgar         ###   ########.fr       */
+/*   Updated: 2020/02/16 14:38:31 by llachgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_checker.h"
+void free_2d_str(char **str)
+{
+    int i;
+
+    i = 0;
+    while (str[i] != NULL)
+    {
+        free(str[i]);
+        i++;
+    }
+    free(str[i]);
+    free(str);
+}
 
 long int        long_atoi(const char *str)
 {
@@ -46,6 +59,7 @@ void free_data(t_data *data)
     {
         tmp = data;
         data = data->next;
+		ft_strdel(&tmp->line);
         free(tmp);
     }
 }

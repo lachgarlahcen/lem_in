@@ -6,7 +6,7 @@
 /*   By: llachgar <llachgar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 09:32:38 by llachgar          #+#    #+#             */
-/*   Updated: 2020/02/15 10:28:35 by llachgar         ###   ########.fr       */
+/*   Updated: 2020/02/16 14:50:35 by llachgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	init(t_info *info, t_graph *head, t_lemin *l)
 {
 	l->data = NULL;
     l->last_r = 0;
-    l->start = NULL;
-    l->end = NULL;
+    l->e = 0;
+    l->s = 0;
 	head->start = NULL;
 	head->end = NULL;
 	head->begining = NULL;
@@ -41,7 +41,6 @@ long check_ant_num(char *line)
 
 void  exit_error(t_lemin *l, char *line)
 {
-    // TODO: FREE LEMIN
     free_lemin(l);
     if (line)
         free(line);
@@ -62,12 +61,8 @@ t_data *create_data(t_data *data, char *line)
 int check_validation(t_lemin *l, t_graph *g, t_info *i)
 {
     char *line;
-    int     s;
-    int     e;
 
     line = NULL;
-    s = 0;
-    e = 0;
     get_next_line(0, &line);
     if (!line || (i->ants = check_ant_num(line)) < 0 || i->ants > 2147483647)
         exit_error(l, line);
@@ -82,17 +77,13 @@ int check_validation(t_lemin *l, t_graph *g, t_info *i)
         if (is_egnored(line))
             continue ;
         else if (ft_strequ(line, "##start"))
-            get_start_end(line, l, &s, 1, g);
+            get_start_end(line, l, &l->s, 1, g);
         else if (ft_strequ(line, "##end"))
-            get_start_end(line, l, &e, 0, g);
+            get_start_end(line, l, &l->e, 0, g);
         else
-        {
             get_rooms_links(line, l, g);
-        }
-        ft_strdel(line);
     }
     if (!g->start|| !g->end)
         exit_error(l, line);
-    //ft_printf("OKI\n");
     return (1);
 }

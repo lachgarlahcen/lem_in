@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: llachgar <llachgar@student.42.fr>          +#+  +:+       +#+         #
+#    By: oaghzaf <oaghzaf@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/14 20:31:46 by llachgar          #+#    #+#              #
-#    Updated: 2020/02/15 10:00:56 by llachgar         ###   ########.fr        #
+#    Updated: 2020/02/16 06:31:04 by oaghzaf          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRC_NAME = 	ants_farm.c \
 			set_rooms.c \
 			sort_rooms.c \
 			the_core.c \
-			tools.c 
+			tools.c \
+			free.c 
 
 OBJ_NAME =	$(SRC_NAME:.c=.o)
 
