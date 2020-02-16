@@ -6,7 +6,7 @@
 /*   By: llachgar <llachgar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/31 17:34:00 by oaghzaf           #+#    #+#             */
-/*   Updated: 2020/02/15 09:45:04 by llachgar         ###   ########.fr       */
+/*   Updated: 2020/02/15 10:10:21 by llachgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ void        get_rooms_links(char *line, t_lemin *l, t_graph *g);
 t_room      *add_torooms(t_room **rooms ,char *line);
 int         link_rooms(t_room *rooms, char *line);
 void        get_start_end(char *line, t_lemin *l, int *s, int e, t_graph *g);
-void        exit_error(t_lemin *l);
+void        exit_error(t_lemin *l, char *line);
 int         n_valid(char *str);
 /*
 ** CHECKING FILE VALIDATION FUNCTIONS ENDED

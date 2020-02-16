@@ -6,7 +6,7 @@
 /*   By: llachgar <llachgar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 20:45:43 by llachgar          #+#    #+#             */
-/*   Updated: 2020/02/15 09:23:33 by llachgar         ###   ########.fr       */
+/*   Updated: 2020/02/15 10:26:44 by llachgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void get_rooms_links(char *line, t_lemin *l, t_graph *g)
     {
         l->last_r = 1;
         if (!link_rooms(g->begining, line))
-            exit_error(l);
+            exit_error(l, line);
     }
     else if(l->last_r || !add_torooms(&g->begining, line))
     {
-        exit_error(l);
+        exit_error(l, line);
     }
 }
 
@@ -43,7 +43,6 @@ t_room *add_torooms(t_room **rooms ,char *line)
     }
     tmp = room_process(rooms, tab);
     // free 2d table
-    // init begin
     return (tmp);
 }
 
@@ -79,8 +78,7 @@ void get_start_end(char *line, t_lemin *l, int *s, int e, t_graph *g)
 {
     if (*s != 0 || l->last_r)
     {
-        free(line);
-        exit_error(l);
+        exit_error(l, line);
     }
     free(line);
     line = NULL;
@@ -88,8 +86,7 @@ void get_start_end(char *line, t_lemin *l, int *s, int e, t_graph *g)
     {
         if (is_empty(line) || n_valid(line))
         {
-            free(line);
-            exit_error(l);
+            exit_error(l, NULL);
         }
         else if (!is_egnored(line))
             break ;

@@ -6,7 +6,7 @@
 /*   By: llachgar <llachgar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 09:32:38 by llachgar          #+#    #+#             */
-/*   Updated: 2020/02/15 09:48:05 by llachgar         ###   ########.fr       */
+/*   Updated: 2020/02/15 10:28:35 by llachgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,17 @@ long check_ant_num(char *line)
     if(line[i] == '\0' && i != 0)
     {
         i = long_atoi(line);
-        free(line);
         return (i);
     }
-    free(line);
     return (-1);
 }
 
-void  exit_error(t_lemin *l)
+void  exit_error(t_lemin *l, char *line)
 {
     // TODO: FREE LEMIN
     free_lemin(l);
+    if (line)
+        free(line);
     ft_printf("ERROR\n");
     exit(0);
 }
@@ -70,29 +70,29 @@ int check_validation(t_lemin *l, t_graph *g, t_info *i)
     e = 0;
     get_next_line(0, &line);
     if (!line || (i->ants = check_ant_num(line)) < 0 || i->ants > 2147483647)
-        exit_error(l);
+        exit_error(l, line);
+    free(line);
     while (get_next_line(0, &line) > 0)
     {
-        l->data = create_data(l->data,line);
         if (is_empty(line))
             break ;
         if (n_valid(line))
-            exit_error(l);
-        else if (is_egnored(line))
+            exit_error(l, line);
+        l->data = create_data(l->data,line);
+        if (is_egnored(line))
             continue ;
-        else if (!ft_strcmp(line, "##start"))
+        else if (ft_strequ(line, "##start"))
             get_start_end(line, l, &s, 1, g);
-        else if (!ft_strcmp(line, "##end"))
+        else if (ft_strequ(line, "##end"))
             get_start_end(line, l, &e, 0, g);
         else
         {
             get_rooms_links(line, l, g);
         }
-        //free(line);
-        line = NULL;
+        ft_strdel(line);
     }
     if (!g->start|| !g->end)
-        exit_error(l);
-    ft_printf("OKI\n");
+        exit_error(l, line);
+    //ft_printf("OKI\n");
     return (1);
 }

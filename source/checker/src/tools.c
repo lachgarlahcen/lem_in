@@ -6,7 +6,7 @@
 /*   By: llachgar <llachgar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 20:30:59 by llachgar          #+#    #+#             */
-/*   Updated: 2020/02/15 09:20:26 by llachgar         ###   ########.fr       */
+/*   Updated: 2020/02/15 10:17:52 by llachgar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,10 @@ void free_lemin(t_lemin *l)
 int is_egnored(char *str)
 {
     if (str[0] == '#' && !(!ft_strcmp(str, "##start") || !ft_strcmp(str, "##end")))
+	{
+		ft_strdel(&str);
         return (1);
+	}
     return (0);
 }
 int n_valid(char *str)
@@ -79,5 +82,6 @@ int is_empty(char *str)
         i++;
     if (str[i] != '\0')
         return (0);
+	ft_strdel(&str);
     return (1);
 }
