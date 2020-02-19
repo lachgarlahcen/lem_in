@@ -57,7 +57,14 @@ t_data *create_data(t_data *data, char *line)
     tmp->line = ft_strdup(line);
     return (tmp);
 }
+void swap_strings(char **str1, char **str2)
+{
+    char *tmp;
 
+    tmp = *str1;
+    *str1 = *str2;
+    *str2 = tmp;
+}
 int check_validation(t_lemin *l, t_graph *g, t_info *i)
 {
     char *line;
@@ -85,5 +92,6 @@ int check_validation(t_lemin *l, t_graph *g, t_info *i)
     }
     if (!g->start|| !g->end)
         exit_error(l, line);
+    swap_strings(&(g->start->name), &(g->end->name));
     return (1);
 }
