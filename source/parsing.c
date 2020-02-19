@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llachgar <llachgar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaghzaf <oaghzaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/31 17:26:08 by oaghzaf           #+#    #+#             */
-/*   Updated: 2020/02/16 23:24:08 by llachgar         ###   ########.fr       */
+/*   Updated: 2020/02/18 05:51:15 by oaghzaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,23 +50,22 @@ void	get_info(void)
 	t_info	info;
 	t_graph	head;
 	t_multi	*multi;
-	int		rest;
 	t_lemin l;
+	t_multi *hold;
 
 	multi = NULL;
 	init(&info, &head, &l);
 	check_validation(&l, &head, &info);
 	the_core(&head, &multi);
+	hold = multi;
 	multi = optimal_path(multi, &info);
 	multi->paths = sort_paths(multi->paths);
 	add_end(&multi->paths, head.end);
-	rest = ants_path(multi, &info);
-	add_rest(multi->paths, rest, &info);
+	add_rest(multi->paths, ants_path(multi, &info), &info);
 	loop_path(multi->paths, &info, &head);
-	free_paths(multi->paths);
-	free_multi(multi, &l);
+	free_multi(hold, &l);
+	ft_printf("\nok\n");
 	free_room((&head)->begining);
-
 }
 
 int		main()

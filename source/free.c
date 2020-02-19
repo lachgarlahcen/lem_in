@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llachgar <llachgar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oaghzaf <oaghzaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 06:22:51 by oaghzaf           #+#    #+#             */
-/*   Updated: 2020/02/16 23:23:41 by llachgar         ###   ########.fr       */
+/*   Updated: 2020/02/18 05:48:06 by oaghzaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,26 @@ void	free_room(t_room *room)
 	while (room)
 	{
 		tmp = room;
-		room = room->next;
-		free(tmp->name);
-		free(tmp);
 		while (room->link)
 		{
 			temp = room->link;
 			room->link = room->link->next;
 			free(temp);
 		}
+		room = room->next;
+		free(tmp->name);
+		free(tmp);
 	}
 }
 
 void	free_path(t_path *path)
 {
-	t_path * tmp;
-	
+	t_path	*tmp;
+
 	while (path)
 	{
 		tmp = path;
 		path = path->next;
-		//free_rooms(tmp->room);
 		free(tmp);
 	}
 }
@@ -68,7 +67,7 @@ void	free_multi(t_multi *multi, t_lemin *l)
 	{
 		tmp = multi;
 		multi = multi->next;
-		// free_paths(tmp->paths);
+		free_paths(tmp->paths);
 		free(tmp);
 	}
 }
